@@ -16,7 +16,6 @@ Hi, I’m Eric. This site was built with R Markdown websites. It contains inform
 
 Check out my [resume](resume.html)
 
-
 Here's a picture of me: 
 
 ![](images/eric.jpeg)

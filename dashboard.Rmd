@@ -1,0 +1,132 @@
+---
+title: "New York NOAA Weather Dashboard"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+    theme: cosmo
+runtime: shiny
+---
+```{r, message = FALSE}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(plotly)
+library(lubridate)
+library(p8105.datasets)
+```
+
+
+```{r}
+data("ny_noaa")
+
+## Data Cleaning
+weather <- ny_noaa %>%
+  mutate(
+    date = ymd(date),
+    year = year(date),
+    month = month(date, label = TRUE, abbr = TRUE),
+    prcp_mm = prcp / 10,       
+    snow_mm = snow,            
+    snwd_mm = snwd,            
+    tmax_c = as.numeric(tmax) / 10,  
+    tmin_c = as.numeric(tmin) / 10
+  )
+
+## Monthly temperature means ignore NA
+monthly_temps <- weather %>%
+  group_by(year, month) %>%
+  summarise(
+    mean_tmax_c = mean(tmax_c, na.rm = TRUE),
+    mean_tmin_c = mean(tmin_c, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+```
+
+
+### 1. Monthly Mean Temperatures Heatmap
+```{r}
+monthly_temps_matrix <- monthly_temps %>%
+  mutate(
+    month_num = as.numeric(month),  # convert labeled month to numeric
+    ym = lubridate::ymd(paste0(year, "-", month_num, "-01"))
+  ) %>%
+  select(ym, month, year, mean_tmax_c, mean_tmin_c)
+
+# Heatmap for Tmax
+tmax_heatmap <- ggplot(monthly_temps_matrix,
+                       aes(x = year, y = month, fill = mean_tmax_c)) +
+  geom_tile() +
+  scale_fill_viridis_c(name = "°C", option = "C") +
+  labs(
+    title = "New York State Monthly Mean Tmax (°C): Year × Month",
+    x = "Year",
+    y = "Month",
+    caption = "Source: p8105.datasets::ny_noaa; monthly means with na.rm = TRUE."
+  )
+
+plotly::ggplotly(tmax_heatmap)
+
+# Heatmap for Tmin
+tmin_heatmap <- ggplot(monthly_temps_matrix,
+                       aes(x = year, y = month, fill = mean_tmin_c)) +
+  geom_tile() +
+  scale_fill_viridis_c(name = "°C", option = "C") +
+  labs(
+    title = "New York State Monthly Mean Tmin (°C): Year × Month",
+    x = "Year",
+    y = "Month",
+    caption = "Source: p8105.datasets::ny_noaa; monthly means with na.rm = TRUE."
+  )
+
+plotly::ggplotly(tmin_heatmap)
+```
+
+
+### 2. Precipitation Distribution
+```{r}
+ggplot(weather %>% filter(prcp_mm > 0), aes(x = month, y = prcp_mm)) +
+  geom_violin(fill = "#9467bd", alpha = 0.6) +
+  scale_y_log10() +
+  labs(
+    title = "Distribution of Daily Precipitation by Month (log scale) New York State",
+    x = "Month",
+    y = "Precipitation (mm, log scale)",
+    caption = "Log scale highlights seasonal rainfall patterns while reducing skew."
+  ) +
+  theme_minimal()
+```
+
+
+
+
+### 3. Monthly Mean Tmax vs Tmin 
+```{r}
+monthly_mean_scatter <- weather %>%
+  dplyr::group_by(year, month) %>%
+  dplyr::summarise(
+    mean_tmin_c = mean(tmin_c, na.rm = TRUE),
+    mean_tmax_c = mean(tmax_c, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+monthly_tmin_vs_tmax_plot <- ggplot(
+  monthly_mean_scatter,
+  aes(x = mean_tmin_c, y = mean_tmax_c, color = month)
+) +
+  geom_point(alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 0.8, color = "grey40") +
+  labs(
+    title = "Monthly Mean Tmax vs Tmin Across New York State",
+    x = "Monthly Mean Tmin (°C)",
+    y = "Monthly Mean Tmax (°C)",
+    color = "Month"
+  ) +
+  coord_equal() +
+  theme_minimal()
+
+plotly::ggplotly(monthly_tmin_vs_tmax_plot)
+```
+
+Go back to [homepage](index.html)
