@@ -1,5 +1,6 @@
 name: "Eric Zhang"
 output_dir: "."
+
 navbar:
   title: "Home"
   right:
@@ -10,9 +11,10 @@ navbar:
     - text: "About"
       href: about.html
     - icon: fa-github fa-lg
-      href: "https://github.com/xz3312/
+      href: "https://github.com/xz3312/"
     - icon: fa-envelope fa-lg
       href: "mailto:xz3312@cumc.columbia.edu"
+
 output:
   html_document:
     theme: cerulean
