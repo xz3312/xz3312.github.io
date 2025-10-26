@@ -9,9 +9,9 @@ output:
 
 In my free time, I love to explore the many different restaurants in New York City! Lately I've been loving Korean bbq and making pesto pasta. I also love going on ski trips with friends!
 
-[kbbq](images/kbbq.jpeg)
-[pasta](images/pasta.jpeg)
-[ski](images/ski.jpeg)
+![](images/kbbq.jpeg)
+![](images/pasta.jpeg)
+![](images/ski.jpeg)
 
 Go back to [homepage](index.html)
 
