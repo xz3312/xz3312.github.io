@@ -1,0 +1,27 @@
+---
+title: "Resume"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+
+## Education
+- Columbia University — MS Biostatistics (Statistical Genetics)
+- UC Santa Barbara - BS Pharmacology
+
+## Research Experience
+- Graduate student researcher at Chio Lab — Investigate the role of MSRA chirality in promoting cachexia in pancreatic ductal adenocarcinoma.
+- Undergraduate research assistant at Finkelstein Lab - Investigate the role of E3 Ligase in ABI-4 transcription factor degradation.
+
+## Skills 
+- Western blot, cell culturing and passaging, bradford assay, gus-fusion assay
+- R, python
+
+## Relevant Courseworks
+- P8105 Data Science, P8130 Biostatistical Methods, P8104 Probability and Inference, P8149 Statistical Genetics
+
+
+[Back to Home](index.html)

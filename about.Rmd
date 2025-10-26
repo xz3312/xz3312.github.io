@@ -1,0 +1,14 @@
+---
+title: "About this website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+This website was coded by Eric Zhang using RMarkdown to do all the hard work.
+
+Go back to [homepage](index.html)
+
+![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)

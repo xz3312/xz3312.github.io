@@ -1,0 +1,16 @@
+name: "Eric Zhang"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "Resume"
+      href: resume.html
+    - text: "Dashboard"
+      href: dashboard.html
+    - icon: fa-github fa-lg
+      href: "https://github.com/YOUR_GH_NAME"
+    - icon: fa-envelope fa-lg
+      href: "mailto:YOUR_UNI@columbia.edu"
+output:
+  html_document:
+    theme: cerulean

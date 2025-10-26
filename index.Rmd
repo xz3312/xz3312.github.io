@@ -1,0 +1,25 @@
+---
+title: "Eric Zhang's Personal Website"
+output: 
+  html_document:
+---
+
+
+
+# Welcome to my website!
+
+Hi, I’m Eric. This site was built with R Markdown websites. It contains information about my personal, educational, and professional background. I'm a recent graduate of UC Santa Barbara with a degree in Pharmacology. I am currently studying statistical genetics in the department of Biostatistics at Columbia.
+
+
+- Email: xz3312@cumc.columbia.edu  
+- GitHub: https://github.com/xz3312/
+
+Check out my [resume](resume.html)
+
+
+Here's a picture of me: 
+
+![](images/eric.jpeg)
+
+I have a five-year old Shiba Inu:
+![](images/pudding.JPG)
