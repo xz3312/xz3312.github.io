@@ -95,7 +95,7 @@ plot_ly(df,
 
 # 3. Tmax vs Tmin scatter plot
 
-Average monthly minimum and maximum temperature in the state of New York shows a strong linear relationship which suggests consistent seasonal variation in rainfall across the years.
+Average monthly minimum and maximum temperature in the state of New York shows a strong linear relationship which suggests consistent seasonal variation in temperature across the years.
 
 ```{r}
 scatter_data <- weather %>%
