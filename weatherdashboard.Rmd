@@ -122,6 +122,3 @@ plot_ly(scatter_data,
   )
 ```
 
-
-
-
