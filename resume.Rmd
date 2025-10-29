@@ -7,52 +7,21 @@ output:
     theme: cerulean
 ---
 
-## EDUCATION
-Columbia University Mailman School of Public Health New York, NY
-Master of Science in Biostatistics, Statistical Genetics track 08/2025 – Present
-• Relevant Coursewor: P8105 Data Science, P8130 Biostatistical Methods, P8104 Probability and Inference
-University of California, Santa Barbara Santa Barbara, CA
-Bachelor of Science in Pharmacology, College of Letters and Science Honors Program 09/2021 – 06/2025
-• GPA: 3.76/4.00
-• Relevant Coursework: MCDB 194SK Biostatistics, MCDB 101A & B Molecular Genetics, MCDB 188
-Literature in Plant Molecular Biology, MCDB 170 Programming in Biology
 
-## WORK AND RESEARCH EXPERIENCE
-Christine Chio Lab, Irving Cancer Research Center, Columbia University New York, NY
-Graduate Student Researcher 08/2025 – Present
-• Investigate the role of MSRA chirality in promoting cachexia in pancreatic ductal adenocarcinoma. Utilize
-biostatistical methods to develop methods for genetic association and high dimensional inference of cancer
-progression.
-Ruth Finkelstein Lab, UCSB Santa Barbara, CA
-Undergraduate Researcher 05/2023 – 06/2025
-• Investigated whether CER9-encoded E3 ligase destabilizes the protein ABI-4 in wild-type and mutant
-Arabidopsis by comparing the activity of protein fusion with GUS, an indirect measurement of protein
-concentration. Experimental results did not establish such a connection after extensive testing of wild-type
-and CER9-mutant plants.
-• Next step is to test the PRT6 gene that encodes an enzyme with established links to stress signaling and
-protein degradation.
-Star of CA, a Stepping Stones Group Company Santa Barbara, CA
-Behavior Technician 09/2023 – 05/2024
-• Provided direct behavioral intervention to individuals with Autism Spectrum Disorder using ABA
-methodologies and strategies.
-• Implemented behavior support and treatment plans. Recorded data and clinical documentation on client’s
-response to intervention.
+## Education
+- Columbia University — MS Biostatistics (Statistical Genetics)
+- UC Santa Barbara - BS Pharmacology
 
-## EXTRACURRICULAR ACTIVITIES
-Associated Students Environmental Affairs Board, UCSB Santa Barbara, CA
-Education Chair 05/2023 – 06/2025
-• Planned and hosted composting events, hiking, Green Chef cooking, and clothing swap each quarter to get
-general members engaged. Present environmental conservation information to campus community.
-Associated Students Recycling, UCSB Santa Barbara, CA
-Route Rider 09/2023 – 06/2025
-• Managed campus waste by servicing trash bins and ensuring accurate sorting of materials into recycling,
-compost, or landfill. Promoted effective waste management practices to support campus sustainability goals.
-PUBLICATIONS
-• V Pham, TJ Lynch, E Tucker, X. Zhang, C Derderian, K Swentkowsky, RR Finkelstein “ABI-4 Stability
-is Regulated by N-End Rule”. Manuscript in preparation.
-• Zhang, X. E. (2023). Lasso regression and random forest analysis on variables contributing to myocardial
-infarction. Paper presented at International Conference on Frontiers of Biological Sciences and
-Environmental Health, Singapore.
+## Research Experience
+- Graduate student researcher at Chio Lab — Investigate the role of MSRA chirality in promoting cachexia in pancreatic ductal adenocarcinoma.
+- Undergraduate research assistant at Finkelstein Lab - Investigate the role of E3 Ligase in ABI-4 transcription factor degradation.
+
+## Skills 
+- Western blot, cell culturing and passaging, bradford assay, gus-fusion assay
+- R, python
+
+## Relevant Courseworks
+- P8105 Data Science, P8130 Biostatistical Methods, P8104 Probability and Inference, P8149 Statistical Genetics
 
 
 [Back to Home](index.html)
