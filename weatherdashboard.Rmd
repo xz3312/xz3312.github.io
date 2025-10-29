@@ -1,0 +1,125 @@
+---
+title: "New York State Weather Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+runtime: shiny
+---
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(lubridate)
+library(plotly)
+library(p8105.datasets)
+
+data("ny_noaa")
+
+weather <- ny_noaa %>%
+mutate(
+date = ymd(date),
+year = year(date),
+month = month(date, label = TRUE, abbr = TRUE),
+tmax_c = as.numeric(tmax) / 10,
+tmin_c = as.numeric(tmin) / 10,
+prcp_mm = prcp / 10
+) %>%
+select(id, date, year, month, prcp_mm, tmax_c, tmin_c)
+```
+
+# 1. Mean tmax and tmin heatmap
+
+The heatmap shows clear cycle of temperatures in New York: warmer colors in the summer and cooler colors in the winter. Both tmax and tmin heat maps show this cyclic pattern, with recent years showing a slight warming trend likely caused by global warming.
+
+## tmax heatmap
+```{r}
+monthly_temps <- weather %>%
+group_by(year, month) %>%
+summarise(mean_tmax_c = mean(tmax_c, na.rm = TRUE),
+mean_tmin_c = mean(tmin_c, na.rm = TRUE),
+.groups = "drop")
+
+tmaxp1 <- ggplot(monthly_temps, aes(x = year, y = month, fill = mean_tmax_c)) +
+geom_tile() +
+scale_fill_viridis_c(name = "°C") +
+labs(title = "Monthly Mean Tmax (°C)", x = "Year", y = "Month")
+
+ggplotly(tmaxp1)
+```
+
+## tmin heatmap
+```{r}
+tminp2 <- ggplot(monthly_temps, aes(x = year, y = month, fill = mean_tmin_c)) +
+geom_tile() +
+scale_fill_viridis_c(name = "°C") +
+labs(title = "Monthly Mean Tmin (°C)", x = "Year", y = "Month")
+
+ggplotly(tminp2)
+
+```
+
+# 2. Precipitation distribution
+
+This log scale plot spreads out smaller precipitation values which makes it easier to compare light and moderate rainfall amount across months and observe seasonal differences. The plot shows heavier and more frequent rainfall in warmer months **June through September** while winter months **January to February** have lighter rainfall.
+
+```{r}
+set.seed(123)
+df <- weather %>%
+  filter(!is.na(prcp_mm), prcp_mm > 0) %>%
+  sample_frac(0.02)  # keep 2% of data (~manageable for Plotly)
+
+plot_ly(df,
+        x = ~month,
+        y = ~prcp_mm,
+        type = "violin",
+        box = list(visible = TRUE),
+        meanline = list(visible = TRUE),
+        fillcolor = "rgba(148,103,189,0.5)",
+        line = list(color = "rgba(148,103,189,1)"),
+        opacity = 0.7,
+        hoverinfo = "x+y",
+        scalemode = "count") |>
+  layout(
+    title = "Interactive Distribution of Daily Precipitation by Month (sampled data, log scale)",
+    yaxis = list(title = list(text = "Precipitation (mm, log)", standoff = 10),
+                 type = "log", automargin = TRUE),
+    xaxis = list(title = list(text = "Month", standoff = 20),
+                 tickangle = -45, automargin = TRUE),
+    violingap = 0.15,
+    violinmode = "overlay",
+    showlegend = FALSE,
+    margin = list(l = 80, r = 40, b = 140, t = 60)  
+  )
+```
+
+# 3. Tmax vs Tmin scatter plot
+
+Average monthly minimum and maximum temperature in the state of New York shows a strong linear relationship which suggests consistent seasonal variation in rainfall across the years.
+
+```{r}
+scatter_data <- weather %>%
+group_by(year, month) %>%
+summarise(
+mean_tmin_c = mean(tmin_c, na.rm = TRUE),
+mean_tmax_c = mean(tmax_c, na.rm = TRUE),
+.groups = "drop"
+)
+
+plot_ly(scatter_data,
+        x = ~mean_tmin_c, 
+        y = ~mean_tmax_c,
+        color = ~month, colors = "viridis",
+        type = "scatter", mode = "markers") |>
+  layout(
+    title = "Monthly Mean Tmax vs Tmin in New York State",
+    xaxis = list(title = list(text = "Mean Tmin (°C)", standoff = 20),
+                 tickangle = 0, automargin = TRUE),
+    yaxis = list(title = list(text = "Mean Tmax (°C)", standoff = 10),
+                 automargin = TRUE),
+    legend = list(title = list(text = "Month")),
+    margin = list(l = 80, r = 60, b = 120, t = 60)
+  )
+```
+
+
