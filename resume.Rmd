@@ -7,7 +7,6 @@ output:
     theme: cerulean
 ---
 
-
 ## Education
 - Columbia University — MS Biostatistics (Statistical Genetics)
 - UC Santa Barbara - BS Pharmacology
